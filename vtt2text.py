@@ -1,11 +1,10 @@
-# -*- coding: utf-8 -*-
 # @Author: anh-tuan.vu
 # @Date:   2021-01-27 07:02:40
 # @Last Modified by:   anh-tuan.vu
 # @Last Modified time: 2021-01-28 08:19:33
 
 import re
-from os.path import splitext, exists
+from os.path import exists, splitext
 
 
 def clean(filepath: str) -> str:
@@ -18,7 +17,7 @@ def clean(filepath: str) -> str:
         str: clean content
     """
     # read file content
-    with open(filepath, "r", encoding="utf-8") as fp:
+    with open(filepath, encoding="utf-8") as fp:
         content = fp.read()
 
     # remove header & empty lines
@@ -30,8 +29,7 @@ def clean(filepath: str) -> str:
 
     # remove timestamps
     pattern = r"^\d{2}:\d{2}:\d{2}.\d{3}.*\d{2}:\d{2}:\d{2}.\d{3}$"
-    lines = [lines[i] for i in range(len(lines))
-             if not re.match(pattern, lines[i])]
+    lines = [lines[i] for i in range(len(lines)) if not re.match(pattern, lines[i])]
 
     content = " ".join(lines)
     # remove duplicate spaces
@@ -66,7 +64,7 @@ def to_file(file_in: str, file_out=None, **kwargs) -> str:
         i = 0
         while exists(file_out):
             i += 1
-            file_out = "%s_%s.txt" % (filename, i)
+            file_out = "{}_{}.txt".format(filename, i)
 
     content = clean(file_in)
     with open(file_out, "w+", encoding="utf-8") as fp:

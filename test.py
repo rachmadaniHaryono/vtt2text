@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # @Author: anh-tuan.vu
 # @Date:   2021-01-27 07:50:00
 # @Last Modified by:   anh-tuan.vu
@@ -6,8 +5,7 @@
 
 import vtt2text
 
-
-if __name__ == '__main__':
+if __name__ == "__main__":
     filepath = "files/transports_en_commun.vtt"
 
     # get clean content
