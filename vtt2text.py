@@ -1,10 +1,10 @@
 # @Author: anh-tuan.vu
 # @Date:   2021-01-27 07:02:40
-# @Last Modified by:   anh-tuan.vu
-# @Last Modified time: 2021-01-28 08:19:33
-
+# @Last Modified by: rachmadani haryono
 import re
 from os.path import exists, splitext
+
+import click
 
 
 def clean(filepath: str) -> str:
@@ -73,3 +73,37 @@ def to_file(file_in: str, file_out=None, **kwargs) -> str:
         print("clean content is written to file: %s" % file_out)
 
     return file_out
+
+
+def clean_format2(src):
+    pass
+
+
+@click.group()
+@click.option("--debug/--no-debug", default=False)
+def cli(debug):
+    pass
+
+
+@cli.command(name="clean")  # @cli, not @click!
+@click.argument("src", nargs=1, type=click.Path(exists=True))
+@click.option(
+    "--format",
+    "format_",
+    type=click.Choice(["1", "2"]),
+    default="1",
+    help="Output format type.",
+)
+@click.option("--output", type=click.File("wb"), help="Output filename")
+def run_clean(src, format_, output):
+    if format_ == "1" and not output:
+        print(clean(src))
+    elif format_ == "2":
+        content = clean_format2(src)
+        if output:
+            # write to output
+            pass
+        else:
+            print(content)
+    else:
+        raise ValueError(f"Unknown error: {format_}")
