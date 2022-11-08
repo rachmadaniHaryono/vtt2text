@@ -31,3 +31,9 @@ After:
 ## Example
 
 An example is at [test.py](test.py).
+
+
+## See also
+
+- https://developer.mozilla.org/en-US/docs/Web/API/WebVTT_API webvtt documentation
+- https://github.com/tmilab/vtt2txt similar project like this
