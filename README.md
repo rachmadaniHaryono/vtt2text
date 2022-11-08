@@ -28,6 +28,13 @@ After:
 
 ![txt file](images/after.png)
 
+## Usage for youtube video
+
+```console
+> yt-dlp --skip-download --write-auto-subs --sub-langs 'en*' https://www.youtube.com/watch?v=video_id
+> vtt2txt clean --format=2 out.en.vtt  > tmp.txt
+```
+
 ## Example
 
 An example is at [test.py](test.py).
